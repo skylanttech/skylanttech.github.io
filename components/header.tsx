@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
@@ -7,9 +9,10 @@ import { Button } from "@/components/ui/button"
 
 interface HeaderProps {
   onEnquiryClick: () => void
+  searchBar?: React.ReactNode
 }
 
-export default function Header({ onEnquiryClick }: HeaderProps) {
+export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
@@ -56,6 +59,9 @@ export default function Header({ onEnquiryClick }: HeaderProps) {
               </motion.a>
             ))}
           </nav>
+
+          {/* Search Bar (if provided) */}
+          {searchBar && <div className="hidden md:block flex-1 max-w-md mx-8">{searchBar}</div>}
 
           {/* CTA Button */}
           <div className="hidden lg:block">

@@ -12,20 +12,14 @@ import PlacementCompaniesSection from "@/components/placement-companies-section"
 import TestimonialsSection from "@/components/testimonials-section"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
-import CourseEnrollmentModal from "@/components/course-enrollment-modal"
-import SearchBar from "@/components/search-bar"
-import LiveChatWidget from "@/components/live-chat-widget"
-import TrendingCourses from "@/components/trending-courses"
-import BlogPreview from "@/components/blog-preview"
-import MobileAppPromo from "@/components/mobile-app-promo"
+import EnquiryModal from "@/components/enquiry-modal"
 
 export default function HomePage() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false)
-  const [selectedCourse, setSelectedCourse] = useState<string | null>(null)
 
   return (
     <div className="min-h-screen bg-[#f7fbff]">
-      <Header onEnquiryClick={() => setIsEnquiryModalOpen(true)} searchBar={<SearchBar />} />
+      <Header onEnquiryClick={() => setIsEnquiryModalOpen(true)} />
 
       <main>
         <HeroSection />
@@ -37,19 +31,11 @@ export default function HomePage() {
         <PlacementCompaniesSection />
         <TestimonialsSection />
         <ContactSection />
-        <TrendingCourses onEnrollClick={setSelectedCourse} />
-        <BlogPreview />
-        <MobileAppPromo />
       </main>
 
       <Footer />
 
-      <CourseEnrollmentModal
-        isOpen={!!selectedCourse}
-        courseId={selectedCourse}
-        onClose={() => setSelectedCourse(null)}
-      />
-      <LiveChatWidget />
+      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
     </div>
   )
 }

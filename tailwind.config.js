@@ -24,13 +24,11 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0056d2",
-          dark: "#001d3d",
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#ffc300",
-          dark: "#ff9500",
+          DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -61,32 +59,17 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-        "fade-in": {
-          "0%": { opacity: 0, transform: "translateY(20px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
-        },
-        "slide-in-left": {
-          "0%": { opacity: 0, transform: "translateX(-50px)" },
-          "100%": { opacity: 1, transform: "translateX(0)" },
-        },
-        "slide-in-right": {
-          "0%": { opacity: 0, transform: "translateX(50px)" },
-          "100%": { opacity: 1, transform: "translateX(0)" },
+          to: { height: "0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.6s ease-out",
-        "slide-in-left": "slide-in-left 0.6s ease-out",
-        "slide-in-right": "slide-in-right 0.6s ease-out",
       },
     },
   },
