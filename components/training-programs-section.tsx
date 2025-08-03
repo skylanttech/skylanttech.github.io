@@ -14,62 +14,62 @@ export default function TrainingProgramsSection() {
     {
       title: "Full Stack Development",
       description: "Frontend (HTML, CSS, JS) and Backend (Node.js, Python)",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Fullstack.jpeg",
     },
     {
       title: "Python Programming",
       description: "Master Python, Django/Flask and scripting",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Python.jpeg",
     },
     {
       title: "Data Science",
       description: "AI/ML, Pandas, NumPy, Scikit-learn, real projects",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/datascience.jpeg",
     },
     {
       title: "Web Design",
       description: "HTML, CSS, JS, UI/UX, responsive design",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Web Design.jpg",
     },
     {
       title: "Digital Marketing",
       description: "SEO, Google Ads, social media marketing, content, email campaigns",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Digital Marketing.jpeg",
     },
     {
       title: "Business Analyst",
       description: "Bridge business needs with tech solutions using analytics, documentation, tools like Jira",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/business analyst.jpeg",
     },
     {
       title: "Machine Learning & AI",
       description: "Supervised, unsupervised learning, deep learning, real AI applications",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Mlai.jpg",
     },
     {
       title: "Generative AI",
       description: "ChatGPT, Midjourney & DALL·E content generation",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/genai.png",
     },
     {
-      title: "Cybersecurity & Ethical Hacking",
+      title: "Cybersecurity",
       description: "Secure networks, test vulnerabilities, ethical hacking techniques",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Cybersecurity.jpg",
     },
     {
       title: "DevOps & Cloud",
       description: "Docker, Kubernetes, AWS, Azure automation",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/devops.jpeg",
     },
     {
       title: "Salesforce",
       description: "CRM configuration, workflows, automation",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/salesforce.jpeg",
     },
     {
       title: "Java Developer",
       description: "Backend applications with Java, Spring Boot, database integration",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/java.jpeg",
     },
   ]
 
@@ -143,12 +143,12 @@ export default function TrainingProgramsSection() {
                     <div className="p-6">
                       <h3 className="text-xl font-semibold text-[#001d3d] mb-3">{course.title}</h3>
                       <p className="text-gray-600 mb-4">{course.description}</p>
-                      <Button
+                      {/* <Button
                         variant="outline"
-                        className="w-full border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white bg-transparent"
+                        className="w-full border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white bg-transparent align-self-end"
                       >
                         Know More
-                      </Button>
+                      </Button> */}
                     </div>
                   </CardContent>
                 </Card>

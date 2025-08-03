@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Search, Clock, Users, Star, MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -31,6 +31,16 @@ interface Course {
 }
 
 export default function CoursesPage() {
+  // Store random stats for each course in state to avoid hydration errors
+  const [enrollmentStats, setEnrollmentStats] = useState<number[]>([]);
+  const [successRates, setSuccessRates] = useState<number[]>([]);
+
+  // Generate random stats only on client
+  useEffect(() => {
+    setEnrollmentStats(courses.map(() => Math.floor(Math.random() * 50) + 10));
+    setSuccessRates(courses.map(() => Math.floor(Math.random() * 30) + 70));
+    // eslint-disable-next-line
+  }, []);
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedLevel, setSelectedLevel] = useState("All")
@@ -43,7 +53,7 @@ export default function CoursesPage() {
       id: "1",
       title: "Full Stack Development Bootcamp",
       description: "Master modern web development with React, Node.js, databases, and cloud deployment",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Fullstack.jpeg",
       price: 45000,
       originalPrice: 65000,
       duration: "6 months",
@@ -61,7 +71,7 @@ export default function CoursesPage() {
       id: "2",
       title: "Data Science & AI Mastery",
       description: "Learn Python, Machine Learning, Deep Learning, and AI applications with real datasets",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/datascience.jpeg",
       price: 55000,
       originalPrice: 75000,
       duration: "8 months",
@@ -79,7 +89,7 @@ export default function CoursesPage() {
       id: "3",
       title: "Python Programming Complete",
       description: "From basics to advanced Python programming with Django, Flask, and automation",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Python.jpeg",
       price: 35000,
       originalPrice: 45000,
       duration: "4 months",
@@ -97,7 +107,7 @@ export default function CoursesPage() {
       id: "4",
       title: "Digital Marketing Pro",
       description: "Complete digital marketing with SEO, Social Media, Google Ads, and Analytics",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Digital Marketing.jpeg",
       price: 25000,
       originalPrice: 35000,
       duration: "3 months",
@@ -115,7 +125,7 @@ export default function CoursesPage() {
       id: "5",
       title: "Cybersecurity & Ethical Hacking",
       description: "Learn network security, penetration testing, and ethical hacking techniques",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/Cybersecurity.jpg",
       price: 50000,
       originalPrice: 70000,
       duration: "6 months",
@@ -133,7 +143,7 @@ export default function CoursesPage() {
       id: "6",
       title: "DevOps & Cloud Computing",
       description: "Master Docker, Kubernetes, AWS, Azure, and CI/CD pipelines",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/courses/devops.jpeg",
       price: 48000,
       originalPrice: 65000,
       duration: "5 months",
@@ -433,12 +443,12 @@ export default function CoursesPage() {
                         </Button>
                       </div>
 
-                      {/* Enrollment Stats */}
+                      {/* Enrollment Stats (client-only random) */}
                       <div className="mt-4 pt-4 border-t border-gray-100">
                         <div className="flex items-center justify-between text-sm text-gray-500">
-                          <span>{Math.floor(Math.random() * 50) + 10} enrolled this week</span>
+                          <span>{enrollmentStats[index] !== undefined ? enrollmentStats[index] : 35} enrolled this week</span>
                           <span className="text-green-600 font-medium">
-                            {Math.floor(Math.random() * 30) + 70}% success rate
+                            {successRates[index] !== undefined ? successRates[index] : 85}% success rate
                           </span>
                         </div>
                       </div>

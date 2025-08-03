@@ -24,17 +24,18 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="flex flex-col justify-center h-full"
           >
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-[#001d3d] mb-6">Send us a Message</h3>
+            <Card className="border-0 shadow-lg h-full flex flex-col justify-center">
+              <CardContent className="p-8 flex flex-col justify-center h-full">
+                <h3 className="text-2xl font-semibold text-[#001d3d] mb-6 text-center">Send us a Message</h3>
                 <form className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input placeholder="Your Name" className="border-gray-300" />
@@ -62,65 +63,60 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="flex flex-col justify-center h-full"
           >
-            <div>
-              <h3 className="text-2xl font-semibold text-[#001d3d] mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
+            <Card className="border-0 shadow-lg h-full flex flex-col justify-center">
+              <CardContent className="p-8 flex flex-col justify-center">
+                <h3 className="text-2xl font-semibold text-[#001d3d] mb-6 text-center">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#001d3d] mb-1">Address</h4>
+                      <p className="text-gray-600">
+                        401, Royal Rudra, Income Tax Colony,<br />
+                        Near Vasudev Nagar Metro, Nagpur – 440016
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-[#001d3d] mb-1">Address</h4>
-                    <p className="text-gray-600">
-                      401, Royal Rudra, Income Tax Colony,
-                      <br />
-                      Near Vasudev Nagar Metro, Nagpur – 440016
-                    </p>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#001d3d] mb-1">Phone</h4>
+                      <p className="text-gray-600">7558531369 | 7249761369</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#001d3d] mb-1">Email</h4>
+                      <p className="text-gray-600">info@skylanttech.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[#001d3d] mb-1">Working Hours</h4>
+                      <p className="text-gray-600">
+                        Mon - Sat: 9:00 AM - 7:00 PM<br />
+                        Sunday: Closed
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#001d3d] mb-1">Phone</h4>
-                    <p className="text-gray-600">7558531369 | 7249761369</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#001d3d] mb-1">Email</h4>
-                    <p className="text-gray-600">info@skylanttech.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-[#001d3d] mb-1">Working Hours</h4>
-                    <p className="text-gray-600">
-                      Mon - Sat: 9:00 AM - 7:00 PM
-                      <br />
-                      Sunday: Closed
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Google Maps */}
-            <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-              <p className="text-gray-500">Google Maps Integration</p>
-            </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </div>

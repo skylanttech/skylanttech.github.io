@@ -16,13 +16,13 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "/" },
     { name: "About", href: "#about" },
-    { name: "Courses", href: "#courses" },
+    { name: "Courses", href: "/courses" },
     { name: "Internship & Projects", href: "#projects" },
     { name: "Services", href: "#services" },
     { name: "Career", href: "#career" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" },
   ]
 
   return (
@@ -35,8 +35,12 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-2"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
+            <div className="w-10 h-10 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center overflow-hidden">
+              <img
+                src="/logo/sklit_logo.jpeg"
+                alt="Skylant Tech Logo"
+                className="w-8 h-8 object-contain rounded"
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold text-[#001d3d]">Skylant Tech</h1>
