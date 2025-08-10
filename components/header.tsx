@@ -17,11 +17,11 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "#about" },
+    { name: "About", href: "/about" },
     { name: "Courses", href: "/courses" },
-    { name: "Internship & Projects", href: "#projects" },
-    { name: "Services", href: "#services" },
-    { name: "Career", href: "#career" },
+    { name: "Internship & Projects", href: "/projects" },
+    { name: "Services", href: "/services" },
+    { name: "Career", href: "/career" },
     { name: "Contact", href: "/contact" },
   ]
 

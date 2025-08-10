@@ -1,12 +1,17 @@
+"use client"
+import { useState } from "react"
 import Header from "@/components/header";
 import { Mail, Phone, MapPin, User } from "lucide-react";
 import Footer from "@/components/footer";
-import ContactSection from "@/components/contact-section";
+import EnquiryModal from "@/components/enquiry-modal";
+// import ContactSection from "@/components/contact-section";
 
 export default function ContactPage() {
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-[#f7fbff]">
-      <Header />
+      <Header onEnquiryClick={() => setIsEnquiryModalOpen(true)} />
       <main>
         <section className="pt-24 pb-12 bg-gradient-to-br from-[#0056d2] via-[#001d3d] to-[#0056d2] text-white">
           <div className="container mx-auto px-4 text-center">
@@ -88,6 +93,8 @@ export default function ContactPage() {
         </section>
       </main>
       <Footer />
+      
+      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
     </div>
   );
 }

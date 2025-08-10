@@ -1,15 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { useRef } from "react"
 
 export default function TrainingProgramsSection() {
-  const scrollRef = useRef<HTMLDivElement>(null)
-
   const courses = [
     {
       title: "Full Stack Development",
@@ -73,16 +69,6 @@ export default function TrainingProgramsSection() {
     },
   ]
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 320
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      })
-    }
-  }
-
   return (
     <section id="courses" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -99,27 +85,8 @@ export default function TrainingProgramsSection() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6 text-[#001d3d]" />
-          </button>
-          <button
-            onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6 text-[#001d3d]" />
-          </button>
-
-          {/* Scrollable Container */}
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
+        {/* Courses Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-4">
             {courses.map((course, index) => (
               <motion.div
                 key={course.title}
@@ -127,7 +94,7 @@ export default function TrainingProgramsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex-shrink-0 w-80"
+                className="w-full"
               >
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                   <CardContent className="p-0">
@@ -154,7 +121,6 @@ export default function TrainingProgramsSection() {
                 </Card>
               </motion.div>
             ))}
-          </div>
         </div>
       </div>
     </section>

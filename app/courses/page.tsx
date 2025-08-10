@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import EnquiryModal from "@/components/enquiry-modal"
 import Image from "next/image"
 
 interface Course {
@@ -31,6 +32,7 @@ interface Course {
 }
 
 export default function CoursesPage() {
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false)
   // Store random stats for each course in state to avoid hydration errors
   const [enrollmentStats, setEnrollmentStats] = useState<number[]>([]);
   const [successRates, setSuccessRates] = useState<number[]>([]);
@@ -207,7 +209,7 @@ export default function CoursesPage() {
 
   return (
     <div className="min-h-screen bg-[#f7fbff]">
-      <Header onEnquiryClick={() => {}} />
+      <Header onEnquiryClick={() => setIsEnquiryModalOpen(true)} />
 
       {/* Hero Section */}
       <section className="pt-24 pb-12 bg-gradient-to-br from-[#0056d2] via-[#001d3d] to-[#0056d2] text-white">
@@ -485,6 +487,8 @@ export default function CoursesPage() {
       </section>
 
       <Footer />
+      
+      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
     </div>
   )
 }
