@@ -4,8 +4,10 @@ import { motion } from "framer-motion"
 import { Facebook, Twitter, Linkedin, Instagram, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useForm, ValidationError } from "@formspree/react"
 
 export default function Footer() {
+  const [state, handleSubmit] = useForm("mblkbkon")
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
@@ -117,16 +119,26 @@ export default function Footer() {
             <p className="text-gray-300 mb-4 text-base">
               Subscribe to our newsletter for the latest updates on courses and opportunities.
             </p>
-            <form className="flex flex-col space-y-3">
-              <Input
-                placeholder="Your email address"
-                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 rounded-md focus:ring-2 focus:ring-[#ffc300]"
-              />
-              <Button className="w-full bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold rounded-md shadow-lg">
+            {state.succeeded ? (
+              <p className="text-[#ffc300] font-semibold">Thanks for subscribing!</p>
+            ) : (
+            <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
+              <div>
+                <Input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="Your email address"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 rounded-md focus:ring-2 focus:ring-[#ffc300]"
+                />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
+              </div>
+              <Button disabled={state.submitting} className="w-full bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold rounded-md shadow-lg">
                 <Mail className="w-4 h-4 mr-2" />
-                Subscribe
+                {state.submitting ? "Subscribing..." : "Subscribe"}
               </Button>
             </form>
+            )}
           </motion.div>
         </div>
 

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useForm, ValidationError } from "@formspree/react"
 
 interface EnquiryModalProps {
   isOpen: boolean
@@ -13,6 +14,7 @@ interface EnquiryModalProps {
 }
 
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
+  const [state, handleSubmit] = useForm("xdkdjdek")
   return (
     <AnimatePresence>
       {isOpen && (
@@ -46,19 +48,63 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
               </CardHeader>
               <CardContent className="p-6">
-                <form className="space-y-4">
-                  <Input placeholder="Full Name" className="border-gray-300" />
-                  <Input placeholder="Email Address" type="email" className="border-gray-300" />
-                  <Input placeholder="Phone Number" className="border-gray-300" />
-                  <Input placeholder="Course of Interest" className="border-gray-300" />
-                  <Textarea placeholder="Message (Optional)" rows={3} className="border-gray-300" />
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold"
-                  >
-                    Submit Enquiry
-                  </Button>
-                </form>
+                {state.succeeded ? (
+                  <div className="space-y-4 text-center">
+                    <p className="text-[#001d3d] font-semibold">Thank you! Your enquiry has been submitted.</p>
+                    <Button
+                      onClick={onClose}
+                      className="w-full bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold"
+                    >
+                      Close
+                    </Button>
+                  </div>
+                ) : (
+                  <form className="space-y-4" onSubmit={handleSubmit}>
+                    <div>
+                      <Input name="name" placeholder="Full Name" required className="border-gray-300" />
+                      <ValidationError prefix="Name" field="name" errors={state.errors} />
+                    </div>
+                    <div>
+                      <Input
+                        name="email"
+                        placeholder="Email Address"
+                        type="email"
+                        required
+                        className="border-gray-300"
+                      />
+                      <ValidationError prefix="Email" field="email" errors={state.errors} />
+                    </div>
+                    <div>
+                      <Input
+                        name="phone"
+                        placeholder="Phone Number"
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]{10}"
+                        maxLength={10}
+                        title="Enter 10-digit phone number"
+                        required
+                        className="border-gray-300"
+                      />
+                      <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+                    </div>
+                    <div>
+                      <Input name="course" placeholder="Course of Interest" className="border-gray-300" />
+                      <ValidationError prefix="Course" field="course" errors={state.errors} />
+                    </div>
+                    <div>
+                      <Textarea name="message" placeholder="Message (Optional)" rows={3} className="border-gray-300" />
+                      <ValidationError prefix="Message" field="message" errors={state.errors} />
+                    </div>
+                    <Button
+                      type="submit"
+                      disabled={state.submitting}
+                      className="w-full bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold"
+                    >
+                      {state.submitting ? "Submitting..." : "Submit Enquiry"}
+                    </Button>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </motion.div>

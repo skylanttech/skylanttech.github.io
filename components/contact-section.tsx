@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { useForm, ValidationError } from "@formspree/react"
 
 export default function ContactSection() {
+  const [state, handleSubmit] = useForm("xgvzqzkp")
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -36,23 +38,53 @@ export default function ContactSection() {
             <Card className="border-0 shadow-lg h-full flex flex-col justify-center">
               <CardContent className="p-8 flex flex-col justify-center h-full">
                 <h3 className="text-2xl font-semibold text-[#001d3d] mb-6 text-center">Send us a Message</h3>
-                <form className="space-y-6">
+                {state.succeeded ? (
+                  <p className="text-center text-[#001d3d] font-semibold">Thanks! Well reach out soon.</p>
+                ) : (
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Your Name" className="border-gray-300" />
-                    <Input placeholder="Your Email" type="email" className="border-gray-300" />
+                    <div>
+                      <Input name="name" placeholder="Your Name" required className="border-gray-300" />
+                      <ValidationError prefix="Name" field="name" errors={state.errors} />
+                    </div>
+                    <div>
+                      <Input name="email" placeholder="Your Email" type="email" required className="border-gray-300" />
+                      <ValidationError prefix="Email" field="email" errors={state.errors} />
+                    </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Phone Number" className="border-gray-300" />
-                    <Input placeholder="Subject" className="border-gray-300" />
+                    <div>
+                      <Input
+                        name="phone"
+                        placeholder="Phone Number"
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]{10}"
+                        maxLength={10}
+                        title="Enter 10-digit phone number"
+                        required
+                        className="border-gray-300"
+                      />
+                      <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+                    </div>
+                    <div>
+                      <Input name="subject" placeholder="Subject" className="border-gray-300" />
+                      <ValidationError prefix="Subject" field="subject" errors={state.errors} />
+                    </div>
                   </div>
-                  <Textarea placeholder="Your Message" rows={5} className="border-gray-300" />
+                  <div>
+                    <Textarea name="message" placeholder="Your Message" rows={5} className="border-gray-300" />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                  </div>
                   <Button
                     type="submit"
+                    disabled={state.submitting}
                     className="w-full bg-gradient-to-r from-[#0056d2] to-[#001d3d] hover:from-[#001d3d] hover:to-[#0056d2]"
                   >
-                    Send Message
+                    {state.submitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
+                )}
               </CardContent>
             </Card>
           </motion.div>

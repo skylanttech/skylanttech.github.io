@@ -228,6 +228,42 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      {/* Our Training Programs (simple featured grid) */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#001d3d]">Our Training Programs</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Full Stack Development",
+                desc: "Learn frontend, backend, and databases to become job-ready.",
+              },
+              {
+                title: "Python Programming",
+                desc: "Master Python for automation, scripting, and backend development.",
+              },
+              { title: "Data Science", desc: "Build a career in AI, ML, and analytics with Python and tools." },
+              { title: "Web Design", desc: "Design responsive websites using HTML, CSS, and JavaScript." },
+            ].map((item) => (
+              <Card key={item.title} className="h-full border-0 bg-gradient-to-br from-[#f7fbff] to-white hover:shadow-lg transition">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <h3 className="text-xl font-semibold text-[#001d3d] mb-2">{item.title}</h3>
+                  <p className="text-gray-600 mb-4 flex-1">{item.desc}</p>
+                  <Button
+                    onClick={() => setIsEnquiryModalOpen(true)}
+                    className="bg-gradient-to-r from-[#0056d2] to-[#001d3d] hover:from-[#001d3d] hover:to-[#0056d2]"
+                  >
+                    Know More
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Search and Filters */}
       <section className="py-8 bg-white border-b">
         <div className="container mx-auto px-4">
@@ -483,6 +519,67 @@ export default function CoursesPage() {
               </Button>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* More Programs (no horizontal scrolling) */}
+      <section className="pb-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#001d3d]">Explore More Programs</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Business Analyst",
+                desc:
+                  "Bridge business needs with tech solutions using analytics, documentation, and tools like Jira.",
+                img: "/courses/business analyst.jpeg",
+              },
+              {
+                title: "Machine Learning & AI",
+                desc: "Learn supervised/unsupervised learning, deep learning, and real AI applications.",
+                img: "/courses/Mlai.jpg",
+              },
+              { title: "Generative AI", desc: "Use ChatGPT, Midjourney & DALL·E to generate content using AI.", img: "/courses/genai.png" },
+              {
+                title: "Cybersecurity & Ethical Hacking",
+                desc: "Secure networks, test vulnerabilities, and learn ethical hacking techniques.",
+                img: "/courses/Cybersecurity.jpg",
+              },
+              {
+                title: "DevOps & Cloud",
+                desc: "Automate development with Docker, Kubernetes, AWS, and Azure.",
+                img: "/courses/devops.jpeg",
+              },
+              { title: "Salesforce", desc: "Learn CRM configuration, workflows, and automation.", img: "/courses/salesforce.jpeg" },
+              {
+                title: "Digital Marketing",
+                desc: "Master SEO, Google Ads, social media marketing, content, and email campaigns.",
+                img: "/courses/Digital Marketing.jpeg",
+              },
+              { title: "Java Developer", desc: "Build backend apps with Java, Spring Boot, and DB integration.", img: "/courses/java.jpeg" },
+            ].map((p) => (
+              <Card key={p.title} className="h-full border-0 bg-white hover:shadow-lg transition">
+                <CardContent className="p-0">
+                  <div className="relative h-40 w-full overflow-hidden rounded-t-md">
+                    <Image src={p.img} alt={p.title} fill className="object-cover" />
+                  </div>
+                  <div className="p-6 flex flex-col h-full">
+                    <h3 className="text-lg font-semibold text-[#001d3d] mb-2">{p.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4 flex-1">{p.desc}</p>
+                    <Button
+                      onClick={() => setIsEnquiryModalOpen(true)}
+                      variant="outline"
+                      className="border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white bg-transparent"
+                    >
+                      Know More
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 

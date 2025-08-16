@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useForm, ValidationError } from "@formspree/react"
 import Header from "@/components/header";
 import { Mail, Phone, MapPin, User } from "lucide-react";
 import Footer from "@/components/footer";
@@ -8,6 +9,7 @@ import EnquiryModal from "@/components/enquiry-modal";
 
 export default function ContactPage() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false)
+  const [state, handleSubmit] = useForm("xzzvwvrv")
 
   return (
     <div className="min-h-screen bg-[#f7fbff]">
@@ -60,34 +62,60 @@ export default function ContactPage() {
             {/* Contact Form Card */}
             <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center items-start">
               <h2 className="text-2xl font-bold text-[#001d3d] mb-6">Send Us a Message</h2>
-              <form className="space-y-6 w-full">
+              {state.succeeded ? (
+                <div className="space-y-4">
+                  <p className="text-[#001d3d] font-semibold">Thanks! Well get back to you shortly.</p>
+                </div>
+              ) : (
+              <form className="space-y-6 w-full" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input type="text" id="name" name="name" required className="w-full pl-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056d2]" />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input type="tel" id="phone" name="phone" required className="w-full pl-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056d2]" />
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      inputMode="numeric"
+                      pattern="[0-9]{10}"
+                      maxLength={10}
+                      title="Enter 10-digit phone number"
+                      required
+                      className="w-full pl-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056d2]"
+                    />
+                    <ValidationError prefix="Phone" field="phone" errors={state.errors} />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input type="email" id="email" name="email" required className="w-full pl-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056d2]" />
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full pl-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056d2]"
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                   <textarea id="message" name="message" rows={3} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0056d2]" />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
-                <button type="submit" className="w-full bg-gradient-to-r from-[#0056d2] to-[#001d3d] text-white font-semibold py-2 rounded-md hover:from-[#001d3d] hover:to-[#0056d2] transition-colors shadow-md">Send Message</button>
+                <button type="submit" disabled={state.submitting} className="w-full bg-gradient-to-r from-[#0056d2] to-[#001d3d] text-white font-semibold py-2 rounded-md hover:from-[#001d3d] hover:to-[#0056d2] transition-colors shadow-md">{state.submitting ? "Sending..." : "Send Message"}</button>
               </form>
+              )}
             </div>
           </div>
         </section>

@@ -1,0 +1,36 @@
+Form Names & Links — Confirmation Request
+Date: August 14, 2025
+
+Hi [Client Name],
+
+Please confirm the final display names and provide links (if any) for these forms:
+
+1) Enquiry Form (site-wide modal when “Enquire Now” is clicked)
+- Suggested name: Course Enquiry
+- Final name: __________
+- Preferred link/URL: __________
+
+2) Contact page form (/contact)
+- Current: “Send Us a Message”
+- Suggested name: Contact Us
+- Final name: __________
+- Preferred link/URL: __________
+
+3) Homepage contact form (home page section)
+- Current: “Send us a Message”
+- Suggested name: Quick Contact
+- Final name: __________
+- Preferred link/URL: __________
+
+4) Newsletter subscription form (footer)
+- Current: “Stay Updated”
+- Suggested name: Newsletter Signup
+- Final name: __________
+- Preferred link/URL: __________
+
+Optional
+- Should any of these forms be merged or hidden? Yes/No: __________
+- Preferred success message after submission: __________
+- Any third-party tool or CRM to send submissions to (e.g., email, Formspree, Getform, HubSpot): __________
+
+Thanks!
