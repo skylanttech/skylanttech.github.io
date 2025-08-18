@@ -29,7 +29,7 @@ export default function ServicesPage() {
         <ServicesSection />
 
         {/* Project services (the 6 items you shared) */}
-        <ProjectServicesSection />
+        {/* <ProjectServicesSection /> */}
       </main>
 
       <Footer />

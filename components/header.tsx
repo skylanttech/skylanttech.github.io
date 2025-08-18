@@ -19,7 +19,6 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Courses", href: "/courses" },
-  { name: "Internship & Projects", href: "/internship" },
     { name: "Services", href: "/services" },
     { name: "Career", href: "/career" },
     { name: "Contact", href: "/contact" },
@@ -35,11 +34,11 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-2"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-lg flex items-center justify-center overflow-hidden">
+            <div className="w-10 h-10">
               <img
                 src="/logo/sklit_logo.jpeg"
                 alt="Skylant Tech Logo"
-                className="w-8 h-8 object-contain rounded"
+                className="w-8 h-8  "
               />
             </div>
             <div>

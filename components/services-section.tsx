@@ -1,52 +1,102 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { GraduationCap, Briefcase, School, Target, Award, MessageSquare, FileText, Code } from "lucide-react"
+import { Code, Layers, Target, MessageSquare, FileText, Palette, Camera, Megaphone } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog"
 
 export default function ServicesSection() {
   const services = [
     {
-      icon: GraduationCap,
-      title: "IT Training & Internships",
-      description: "Comprehensive training programs with hands-on internship opportunities",
+      icon: Code,
+      title: "Website Development",
+      bullets: [
+        "Custom responsive website design",
+        "E-commerce functionality",
+        "SEO-optimized development",
+      ],
     },
     {
-      icon: Briefcase,
-      title: "Real Client Projects",
-      description: "Work on actual client projects to gain real-world experience",
-    },
-    {
-      icon: School,
-      title: "School/College Programs",
-      description: "Specialized programs designed for educational institutions",
+      icon: Layers,
+      title: "Software Development Services",
+      bullets: [
+        "Custom Software Development (tailored business solutions)",
+        "Web Application Development (Django, PHP, .NET, etc.)",
+        "Mobile App Development (Android, iOS, Flutter, React Native)",
+        "Enterprise Applications (ERP, CRM, HRMS systems)",
+        "IT Consulting & Strategy – smart technology planning, cost optimization, and digital growth.",
+        "Staff Augmentation / Dedicated Developers – Hire skilled developers for short or long-term projects.",
+        "Business Process Automation – Automate tasks like billing, reporting, and approvals to save time.",
+        "Technology Training & Internship Programs – Upskill your workforce with the latest IT training.",
+      ],
     },
     {
       icon: Target,
-      title: "100% Placement Support",
-      description: "Guaranteed placement assistance with our industry partners",
-    },
-    {
-      icon: Award,
-      title: "Industry Certifications",
-      description: "Get certified with industry-recognized credentials",
+      title: "Digital Marketing",
+      bullets: [
+        "Search engine optimization (SEO)",
+        "PPC advertising campaigns",
+        "Email marketing strategies",
+      ],
     },
     {
       icon: MessageSquare,
-      title: "Mock Interviews",
-      description: "Practice interviews with industry professionals",
+      title: "Social Media Management",
+      bullets: [
+        "Content creation & scheduling",
+        "Community engagement",
+        "Analytics & reporting",
+      ],
     },
     {
       icon: FileText,
-      title: "Resume Building",
-      description: "Professional resume crafting and optimization services",
+      title: "Content Development",
+      bullets: [
+        "Blog & article writing",
+        "SEO content optimization",
+        "Content strategy planning",
+      ],
     },
     {
-      icon: Code,
-      title: "Live Coding Sessions",
-      description: "Interactive coding sessions with expert mentors",
+      icon: Palette,
+      title: "Graphic Designing",
+      bullets: [
+        "Logo & brand identity design",
+        "Marketing materials creation",
+        "Social media graphics",
+      ],
+    },
+    {
+      icon: Camera,
+      title: "Instagram Management",
+      bullets: [
+        "Content strategy & planning",
+        "Hashtag optimization",
+        "Engagement growth tactics",
+      ],
+    },
+    {
+      icon: Megaphone,
+      title: "Meta Ads Promotion",
+      bullets: [
+        "Campaign strategy development",
+        "Audience targeting setup",
+        "Performance optimization",
+      ],
     },
   ]
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const selectedService = selectedIndex !== null ? services[selectedIndex] : null
+  const SelectedIcon = selectedService?.icon
 
   return (
     <section id="services" className="py-20 bg-white">
@@ -64,7 +114,7 @@ export default function ServicesSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -73,18 +123,67 @@ export default function ServicesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-0 bg-gradient-to-br from-[#f7fbff] to-white">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-full flex items-center justify-center mx-auto mb-4">
+              <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-[#f7fbff] to-white ring-1 ring-transparent hover:ring-[#0056d2]/40">
+                <CardContent className="p-6 text-center flex flex-col">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-md">
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-[#001d3d] mb-3">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSelectedIndex(index)
+                      setIsOpen(true)
+                    }}
+                    className="mx-auto mt-2 border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white"
+                    aria-haspopup="dialog"
+                  >
+                    Learn More
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
+
+        {/* Pop-out layer for selected service */}
+        <Dialog
+          open={isOpen}
+          onOpenChange={(open) => {
+            setIsOpen(open)
+            if (!open) setSelectedIndex(null)
+          }}
+        >
+          <DialogContent className="sm:max-w-2xl md:max-w-3xl bg-white/95 backdrop-blur shadow-2xl">
+            {selectedService && (
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#0056d2] to-[#001d3d] rounded-xl flex items-center justify-center shadow">
+                    {SelectedIcon ? <SelectedIcon className="w-6 h-6 text-white" /> : null}
+                  </div>
+                  <DialogHeader className="flex-1">
+                    <DialogTitle className="text-2xl text-[#001d3d]">
+                      {selectedService.title}
+                    </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Details about {selectedService.title}
+                    </DialogDescription>
+                  </DialogHeader>
+                </div>
+
+                <div className="text-gray-700 leading-relaxed bg-[#f7fbff] border border-gray-100 rounded-xl p-4">
+                  {Array.isArray((selectedService as any).bullets) ? (
+                    <ul className="list-disc pl-5 space-y-2">
+                      {(selectedService as any).bullets.map((item: string, idx: number) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   )

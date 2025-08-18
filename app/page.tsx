@@ -23,10 +23,10 @@ export default function HomePage() {
 
       <main>
         <HeroSection />
-        <ServicesSection />
-        <AboutSection />
+        {/* <ServicesSection /> */}
+        {/* <AboutSection /> */}
         <TrainingProgramsSection />
-        <ProjectServicesSection />
+        {/* <ProjectServicesSection /> */}
         <StatisticsSection />
         <PlacementCompaniesSection />
         <TestimonialsSection />

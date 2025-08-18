@@ -98,7 +98,7 @@ export default function Footer() {
                 Nagpur – 440016
               </p>
               <p><span className="font-semibold text-white">Phone:</span> 7558531369 | 7249761369</p>
-              <p><span className="font-semibold text-white">Email:</span> info@skylanttech.com</p>
+              <p><span className="font-semibold text-white">Email:</span> skylanttech@gmail.com</p>
               <p>
                 <span className="font-semibold text-white">Working Hours:</span><br />
                 Mon - Sat: 9:00 AM - 7:00 PM<br />

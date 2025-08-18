@@ -34,7 +34,7 @@ export default function ContactPage() {
               </div>
               <div className="flex items-center gap-3 mb-4">
                 <Mail className="w-5 h-5 text-[#0056d2]" />
-                <span className="text-gray-700">info@skylanttech.com</span>
+                <span className="text-gray-700">skylanttech@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 mb-4">
                 <MapPin className="w-5 h-5 text-[#0056d2]" />

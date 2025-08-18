@@ -130,7 +130,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-[#001d3d] mb-1">Email</h4>
-                      <p className="text-gray-600">info@skylanttech.com</p>
+                      <p className="text-gray-600">skylanttech@gmail.com</p>
                     </div>
                   </div>
 

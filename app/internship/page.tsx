@@ -33,10 +33,10 @@ export default function InternshipPage() {
         <ProjectServicesSection />
 
   {/* Additional helpful sections */}
-  <AboutSection />
-  <TrainingProgramsSection />
-  <StatisticsSection />
-  <PlacementCompaniesSection />
+  {/* <AboutSection /> */}
+  {/* <TrainingProgramsSection /> */}
+  {/* <StatisticsSection /> */}
+  {/* <PlacementCompaniesSection /> */}
   <TestimonialsSection />
       </main>
 

@@ -1,11 +1,29 @@
 "use client"
 
+import * as React from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 import Image from "next/image"
+import Autoplay from "embla-carousel-autoplay"
 
 export default function TrainingProgramsSection() {
+  const autoplay = React.useRef(
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+      // Ensure hover/pause works on the whole carousel wrapper (not just viewport)
+      rootNode: (emblaRoot: HTMLElement) => emblaRoot.parentElement as HTMLElement,
+    })
+  )
   const courses = [
     {
       title: "Full Stack Development",
@@ -79,48 +97,60 @@ export default function TrainingProgramsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#001d3d] mb-6">Training Programs</h2>
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Image src="/logo/sklit_logo.jpeg" alt="Skylant" width={44} height={44} className="rounded-sm" />
+              <h2 className="text-4xl md:text-5xl font-bold text-[#001d3d]">Training Programs</h2>
+            </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive courses designed to make you industry-ready
           </p>
         </motion.div>
 
-        {/* Courses Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-4">
-            {courses.map((course, index) => (
-              <motion.div
-                key={course.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="w-full"
-              >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-0">
-                    <div className="h-48 overflow-hidden rounded-t-lg">
-                      <Image
-                        src={course.image || "/placeholder.svg"}
-                        alt={course.title}
-                        width={300}
-                        height={200}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-[#001d3d] mb-3">{course.title}</h3>
-                      <p className="text-gray-600 mb-4">{course.description}</p>
-                      {/* <Button
-                        variant="outline"
-                        className="w-full border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white bg-transparent align-self-end"
-                      >
-                        Know More
-                      </Button> */}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+        {/* Courses Slider */}
+        <div className="relative">
+            <Carousel
+              opts={{ align: "start", loop: true }}
+              plugins={[autoplay.current]}
+              setApi={() => autoplay.current.play()}
+              onMouseEnter={autoplay.current.stop}
+              onMouseLeave={autoplay.current.reset}
+              className="w-full"
+            >
+            <CarouselContent>
+              {courses.map((course, index) => (
+                <CarouselItem key={course.title} className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                      <CardContent className="p-0">
+                        <div className="h-48 overflow-hidden rounded-t-lg">
+                          <Image
+                            src={course.image || "/placeholder.svg"}
+                            alt={course.title}
+                            width={600}
+                            height={320}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        <div className="p-6">
+                          <h3 className="text-xl font-semibold text-[#001d3d] mb-3">{course.title}</h3>
+                          <p className="text-gray-600 mb-4">{course.description}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-left-4 md:-left-8 bg-white/90 border-0 shadow" />
+            <CarouselNext className="-right-4 md:-right-8 bg-white/90 border-0 shadow" />
+          </Carousel>
         </div>
       </div>
     </section>

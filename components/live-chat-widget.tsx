@@ -188,7 +188,7 @@ export default function LiveChatWidget() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-[#0056d2]" />
-                      <span>info@skylanttech.com</span>
+                      <span>skylanttech@gmail.com</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
