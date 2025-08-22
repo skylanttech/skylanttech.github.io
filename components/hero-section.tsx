@@ -1,32 +1,34 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import type { ReactNode, CSSProperties } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Sparkles, CheckCircle2, Code2, Brain, Briefcase } from "lucide-react"
 
 export default function HeroSection() {
+  // Rotating text-only hero copy (no images)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const actionWords = ["Learn", "Build", "Grow", "Launch"]
+  const [wordIndex, setWordIndex] = useState(0)
 
   const slides = [
     {
       title: "Don't Just Learn — Build!",
       subtitle: "Work on Real Projects with Mentors & Land Your Dream Job",
       description: "Future-Ready IT Skills with Real Projects & Placement Support",
-      image: "/placeholder.svg?height=600&width=800",
     },
     {
       title: "Transform Your Career",
       subtitle: "From Learning to Leading in Tech Industry",
       description: "Hands-on Training with Industry Experts",
-      image: "/placeholder.svg?height=600&width=800",
     },
     {
       title: "100% Placement Support",
       subtitle: "Your Success is Our Commitment",
       description: "Real Projects, Real Skills, Real Jobs",
-      image: "/placeholder.svg?height=600&width=800",
     },
   ]
 
@@ -37,53 +39,53 @@ export default function HeroSection() {
     return () => clearInterval(timer)
   }, [slides.length])
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
+  useEffect(() => {
+    const id = setInterval(() => setWordIndex((i) => (i + 1) % actionWords.length), 2200)
+    return () => clearInterval(id)
+  }, [])
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
+  const skills = [
+    "React", "TypeScript", "Next.js", "Node.js", "SQL", "Python",
+    "Docker", "Kubernetes", "AWS", "CI/CD", "Machine Learning", "GenAI",
+  ]
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+  <section id="home" className="relative min-h-screen flex items-center overflow-hidden pb-0">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0056d2] via-[#001d3d] to-[#0056d2]">
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/10 rounded-full"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + i * 0.2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 0.1,
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
+      {/* Animated Aurora Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full blur-3xl"
+          style={{ background: "radial-gradient(closest-side, rgba(255,195,0,0.25), transparent)" }}
+          animate={{ x: [0, 20, -10, 0], y: [0, -10, 20, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -bottom-28 -right-24 w-[40rem] h-[40rem] rounded-full blur-3xl"
+          style={{ background: "radial-gradient(closest-side, rgba(255,255,255,0.12), transparent)" }}
+          animate={{ x: [0, -30, 10, 0], y: [0, 20, -15, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[28rem] h-[28rem] rounded-full blur-3xl"
+          style={{ background: "radial-gradient(closest-side, rgba(0,86,210,0.25), transparent)" }}
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+      <div className="container max-w-7xl mx-auto px-4 lg:px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-10 xl:gap-12 items-center min-h-screen py-20">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white"
+            className="text-white lg:col-span-7 xl:col-span-8"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -93,7 +95,25 @@ export default function HeroSection() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
               >
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">{slides[currentSlide].title}</h1>
+                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={wordIndex}
+                      className="text-[#ffc300]"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {actionWords[wordIndex]}
+                    </motion.span>
+                  </AnimatePresence>{" "}
+                  your future with
+                  <br className="hidden md:block" />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-[#ffc300] to-white">
+                    industry-grade training
+                  </span>
+                </h1>
                 <h2 className="text-xl md:text-2xl mb-4 text-[#ffc300]">{slides[currentSlide].subtitle}</h2>
                 <p className="text-lg md:text-xl mb-8 text-gray-200">{slides[currentSlide].description}</p>
               </motion.div>
@@ -114,64 +134,131 @@ export default function HeroSection() {
                 Get Started
               </Button>
             </div>
+
+            
+
+            
           </motion.div>
 
-          {/* Image Slider */}
+          {/* Interactive, image-free panel */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative lg:col-span-5 xl:col-span-4"
           >
-            <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={slides[currentSlide].image || "/placeholder.svg"}
-                    alt={slides[currentSlide].title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-colors"
-              >
-                <ChevronLeft className="w-6 h-6 text-white" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-colors"
-              >
-                <ChevronRight className="w-6 h-6 text-white" />
-              </button>
-
-              {/* Slide Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                {slides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === currentSlide ? "bg-[#ffc300]" : "bg-white/50"
-                    }`}
-                  />
-                ))}
+            <InteractivePanel>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs md:text-sm mb-4">
+                <Sparkles className="w-4 h-4 text-[#ffc300]" />
+                Pick your track
               </div>
-            </div>
+              <Tabs defaultValue="dev" className="w-full">
+                <TabsList className="bg-white/10">
+                  <TabsTrigger value="dev" className="data-[state=active]:bg-white/20">
+                    <Code2 className="w-4 h-4 mr-2" /> Dev
+                  </TabsTrigger>
+                  <TabsTrigger value="data" className="data-[state=active]:bg-white/20">
+                    <Brain className="w-4 h-4 mr-2" /> Data & AI
+                  </TabsTrigger>
+                  <TabsTrigger value="biz" className="data-[state=active]:bg-white/20">
+                    <Briefcase className="w-4 h-4 mr-2" /> Business
+                  </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="dev" className="mt-4">
+                  <ul className="space-y-3 text-sm">
+                    {[
+                      "React + TypeScript foundations",
+                      "API design, auth, and databases",
+                      "CI/CD and cloud deployment basics",
+                    ].map((line) => (
+                      <li key={line} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#ffc300]" /> {line}
+                      </li>
+                    ))}
+                  </ul>
+                </TabsContent>
+
+                <TabsContent value="data" className="mt-4">
+                  <ul className="space-y-3 text-sm">
+                    {[
+                      "Python, Pandas, and data storytelling",
+                      "Machine learning projects end-to-end",
+                      "GenAI prompting & RAG intro",
+                    ].map((line) => (
+                      <li key={line} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#ffc300]" /> {line}
+                      </li>
+                    ))}
+                  </ul>
+                </TabsContent>
+
+                <TabsContent value="biz" className="mt-4">
+                  <ul className="space-y-3 text-sm">
+                    {[
+                      "Business analytics with SQL & Excel",
+                      "No-code automation and dashboards",
+                      "Portfolio building and interviews",
+                    ].map((line) => (
+                      <li key={line} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#ffc300]" /> {line}
+                      </li>
+                    ))}
+                  </ul>
+                </TabsContent>
+              </Tabs>
+
+             
+            </InteractivePanel>
           </motion.div>
         </div>
       </div>
+
+      {/* Scrolling skills marquee pinned to bottom over blue area */}
+      <div className="pointer-events-none absolute bottom-6 left-0 right-0 z-10">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6">
+          <div className="overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
+            <motion.div
+              className="flex gap-6 text-sm text-blue-100 whitespace-nowrap py-2 px-3"
+              animate={{ x: [0, -800] }}
+              transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+            >
+              {[...skills, ...skills, ...skills].map((s, i) => (
+                <span key={i} className="px-3 py-1 rounded-full bg-white/10">{s}</span>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+      
     </section>
+  )
+}
+
+// Interactive panel with mouse-follow spotlight and subtle grid
+function InteractivePanel({ children }: { children: ReactNode }) {
+  const [spot, setSpot] = useState({ x: 0, y: 0 })
+  return (
+    <div
+      onMouseMove={(e) => {
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect()
+        setSpot({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+      }}
+      className="relative h-auto rounded-2xl overflow-hidden text-white"
+      style={{
+        background:
+          `radial-gradient(600px circle at ${spot.x}px ${spot.y}px, rgba(255,195,0,0.15), transparent 40%), rgba(255,255,255,0.06)`,
+        backdropFilter: "blur(8px)",
+      } as CSSProperties}
+    >
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+        backgroundSize: "24px 24px, 24px 24px",
+        maskImage: "radial-gradient(closest-side, black, transparent)",
+        WebkitMaskImage: "radial-gradient(closest-side, black, transparent)",
+      }} />
+      <div className="relative p-6 md:p-8">{children}</div>
+    </div>
   )
 }

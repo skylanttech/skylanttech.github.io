@@ -500,9 +500,9 @@ export default function CoursesPage() {
       </section>
 
       {/* Courses Grid */}
-      <section className="py-12">
+      <section className="py-10">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {sortedCourses.map((course, index) => (
               <motion.div
                 key={course.id}
@@ -510,7 +510,7 @@ export default function CoursesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 bg-white relative overflow-hidden group">
+                <Card className="h-full hover:shadow-lg transition-all duration-300 border border-gray-100 bg-white relative overflow-hidden group rounded-xl">
                   {/* Badges */}
                   <div className="absolute top-4 left-4 z-10 flex gap-2">
                     {course.trending && (
@@ -525,7 +525,7 @@ export default function CoursesPage() {
 
                   <CardContent className="p-0">
                     {/* Course Image */}
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-40 overflow-hidden">
                       <Image
                         src={course.image || "/placeholder.svg"}
                         alt={course.title}
@@ -557,24 +557,28 @@ export default function CoursesPage() {
                     </div>
 
                     {/* Course Content */}
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <Badge variant="outline" className="text-[#0056d2] border-[#0056d2]">
+                    <div className="p-5 flex flex-col h-full text-[0.95rem]">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="outline" className="text-[#0056d2] border-[#0056d2] text-xs px-2 py-0.5">
                           {course.level}
                         </Badge>
                         <div className="text-right">
-                          <div className="text-2xl font-bold text-[#0056d2]">₹{course.price.toLocaleString()}</div>
-                          <div className="text-sm text-gray-500 line-through">
+                          <div className="text-xl font-bold text-[#0056d2]">₹{course.price.toLocaleString()}</div>
+                          <div className="text-xs text-gray-500 line-through">
                             ₹{course.originalPrice.toLocaleString()}
                           </div>
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-semibold text-[#001d3d] mb-2">{course.title}</h3>
-                      <p className="text-gray-600 mb-4 text-sm">{course.description}</p>
+                      <h3 className="text-lg font-semibold text-[#001d3d] mb-1 min-h-[2.25rem]">
+                        {course.title}
+                      </h3>
+                      <p className="text-gray-600 mb-3 text-sm min-h-[3.5rem] overflow-hidden">
+                        {course.description}
+                      </p>
 
                       {/* Instructor */}
-                      <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 mb-3 text-sm text-gray-600">
                         <div className="w-6 h-6 bg-[#0056d2] rounded-full flex items-center justify-center">
                           <span className="text-white text-xs font-bold">{course.instructor.charAt(0)}</span>
                         </div>
@@ -582,7 +586,7 @@ export default function CoursesPage() {
                       </div>
 
                       {/* Course Features */}
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-2 mb-4 min-h-[44px]">
                         {course.features.slice(0, 3).map((feature, featureIndex) => (
                           <Badge key={featureIndex} variant="secondary" className="text-xs">
                             {feature}
@@ -591,11 +595,11 @@ export default function CoursesPage() {
                       </div>
 
                       {/* Mode Options */}
-                      <div className="flex items-center gap-2 mb-6">
+                      <div className="flex items-center gap-2 mb-4 min-h-[24px]">
                         <MapPin className="w-4 h-4 text-gray-400" />
-                        <div className="flex gap-1">
+                        <div className="flex gap-1 flex-wrap">
                           {course.mode.map((mode, modeIndex) => (
-                            <Badge key={modeIndex} variant="outline" className="text-xs">
+                            <Badge key={modeIndex} variant="outline" className="text-xs px-2 py-0.5">
                               {mode}
                             </Badge>
                           ))}
@@ -603,18 +607,18 @@ export default function CoursesPage() {
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex gap-3">
-                        <Button className="flex-1 bg-gradient-to-r from-[#0056d2] to-[#001d3d] hover:from-[#001d3d] hover:to-[#0056d2]">
+                      <div className="flex gap-2 mt-auto">
+                        <Button className="flex-1 h-10 text-sm bg-gradient-to-r from-[#0056d2] to-[#001d3d] hover:from-[#001d3d] hover:to-[#0056d2]">
                           Enroll Now
                         </Button>
-                        <Button variant="outline" size="sm" className="px-3 bg-transparent">
+                        <Button variant="outline" size="sm" className="px-3 bg-transparent h-10">
                           <ArrowRight className="w-4 h-4" />
                         </Button>
                       </div>
 
                       {/* Enrollment Stats (client-only random) */}
-                      <div className="mt-4 pt-4 border-t border-gray-100">
-                        <div className="flex items-center justify-between text-sm text-gray-500">
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        <div className="flex items-center justify-between text-xs text-gray-500">
                           <span>{enrollmentStats[index] !== undefined ? enrollmentStats[index] : 35} enrolled this week</span>
                           <span className="text-green-600 font-medium">
                             {successRates[index] !== undefined ? successRates[index] : 85}% success rate
@@ -654,12 +658,12 @@ export default function CoursesPage() {
       </section>
 
       {/* More Programs (no horizontal scrolling) */}
-      <section className="pb-16">
+      {/* <section className="pb-14">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-[#001d3d]">Explore More Programs</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {[
               {
                 title: "Business Analyst",
@@ -691,18 +695,18 @@ export default function CoursesPage() {
               },
               { title: "Java Developer", desc: "Build backend apps with Java, Spring Boot, and DB integration.", img: "/courses/java.jpeg" },
             ].map((p) => (
-              <Card key={p.title} className="h-full border-0 bg-white hover:shadow-lg transition">
+              <Card key={p.title} className="h-full border border-gray-100 bg-white hover:shadow-md transition rounded-xl">
                 <CardContent className="p-0">
-                  <div className="relative h-40 w-full overflow-hidden rounded-t-md">
+                  <div className="relative h-32 w-full overflow-hidden rounded-t-md">
                     <Image src={p.img} alt={p.title} fill className="object-cover" />
                   </div>
-                  <div className="p-6 flex flex-col h-full">
-                    <h3 className="text-lg font-semibold text-[#001d3d] mb-2">{p.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4 flex-1">{p.desc}</p>
+                  <div className="p-4 flex flex-col h-full">
+                    <h3 className="text-base font-semibold text-[#001d3d] mb-1 min-h-[2.25rem]">{p.title}</h3>
+                    <p className="text-gray-600 text-sm mb-3 flex-1 min-h-[3.25rem] overflow-hidden">{p.desc}</p>
                     <Button
                       onClick={() => setIsEnquiryModalOpen(true)}
                       variant="outline"
-                      className="border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white bg-transparent"
+                      className="h-9 text-sm border-[#0056d2] text-[#0056d2] hover:bg-[#0056d2] hover:text-white bg-transparent"
                     >
                       Know More
                     </Button>
@@ -712,7 +716,7 @@ export default function CoursesPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
       

@@ -1,0 +1,31 @@
+<svg width="640" height="426" viewBox="0 0 640 426" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="426" rx="18" fill="url(#g)"/>
+  <g filter="url(#f)">
+    <rect x="44" y="50" width="552" height="326" rx="14" fill="rgba(255,255,255,0.1)"/>
+    <rect x="68" y="78" width="180" height="16" rx="8" fill="#FFC300"/>
+    <rect x="68" y="106" width="240" height="10" rx="5" fill="rgba(255,255,255,0.45)"/>
+
+    <rect x="360" y="86" width="210" height="130" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)"/>
+    <rect x="380" y="106" width="170" height="10" rx="5" fill="rgba(255,255,255,0.45)"/>
+    <rect x="380" y="124" width="120" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+
+    <rect x="68" y="162" width="240" height="100" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)"/>
+    <rect x="88" y="182" width="170" height="8" rx="4" fill="rgba(255,255,255,0.35)"/>
+    <rect x="88" y="200" width="120" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+
+    <rect x="68" y="284" width="502" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+    <rect x="68" y="304" width="462" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  </g>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="640" y2="426" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0056D2"/>
+      <stop offset="1" stop-color="#001D3D"/>
+    </linearGradient>
+    <filter id="f" x="24" y="30" width="592" height="366" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="10"/>
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
+    </filter>
+  </defs>
+</svg>

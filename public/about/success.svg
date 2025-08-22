@@ -1,0 +1,30 @@
+<svg width="640" height="426" viewBox="0 0 640 426" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="426" rx="18" fill="url(#g)"/>
+  <g filter="url(#f)">
+    <rect x="40" y="46" width="560" height="334" rx="14" fill="rgba(255,255,255,0.08)"/>
+    <rect x="64" y="76" width="210" height="16" rx="8" fill="#FFC300"/>
+    <rect x="64" y="102" width="240" height="10" rx="5" fill="rgba(255,255,255,0.45)"/>
+
+    <rect x="336" y="92" width="244" height="150" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)"/>
+    <rect x="356" y="110" width="120" height="8" rx="4" fill="rgba(255,255,255,0.35)"/>
+    <rect x="356" y="126" width="160" height="10" rx="5" fill="rgba(255,255,255,0.45)"/>
+
+    <path d="M356 172 C392 156 412 210 444 198 C468 190 494 162 524 174" stroke="#00D084" stroke-width="4" fill="none"/>
+    <circle cx="524" cy="174" r="5" fill="#00D084"/>
+
+    <rect x="64" y="264" width="512" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+    <rect x="64" y="284" width="472" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+  </g>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="640" y2="426" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0056D2"/>
+      <stop offset="1" stop-color="#001D3D"/>
+    </linearGradient>
+    <filter id="f" x="20" y="26" width="600" height="374" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="10"/>
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
+    </filter>
+  </defs>
+</svg>

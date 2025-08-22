@@ -18,10 +18,10 @@ export default function AboutSection() {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="h-48 rounded-lg overflow-hidden">
+        <div className="h-48 rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=200&width=300"
-                    alt="IT Training"
+          src="/about/training.svg"
+          alt="Hands-on IT training"
                     width={300}
                     height={200}
                     className="w-full h-full object-cover"
@@ -29,8 +29,8 @@ export default function AboutSection() {
                 </div>
                 <div className="h-32 rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=150&width=300"
-                    alt="Mentorship"
+          src="/about/mentorship.svg"
+          alt="1:1 mentorship support"
                     width={300}
                     height={150}
                     className="w-full h-full object-cover"
@@ -40,8 +40,8 @@ export default function AboutSection() {
               <div className="space-y-4 pt-8">
                 <div className="h-32 rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=150&width=300"
-                    alt="Real Projects"
+          src="/about/projects.svg"
+          alt="Real client projects"
                     width={300}
                     height={150}
                     className="w-full h-full object-cover"
@@ -49,8 +49,8 @@ export default function AboutSection() {
                 </div>
                 <div className="h-48 rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=200&width=300"
-                    alt="Success Stories"
+          src="/about/success.svg"
+          alt="Placement success stories"
                     width={300}
                     height={200}
                     className="w-full h-full object-cover"
