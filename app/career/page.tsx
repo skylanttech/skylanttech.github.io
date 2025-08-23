@@ -227,7 +227,7 @@ export default function CareerPage() {
 
       <Footer />
 
-      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
+  <EnquiryModal mode="career" isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
     </div>
   )
 }

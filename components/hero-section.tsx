@@ -50,7 +50,7 @@ export default function HeroSection() {
   ]
 
   return (
-  <section id="home" className="relative min-h-screen flex items-center overflow-hidden pb-0">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pb-0">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0056d2] via-[#001d3d] to-[#0056d2]">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -121,23 +121,25 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
+                asChild
                 size="lg"
                 className="bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold"
               >
-                Our Services
+                <a href="/services">Our Services</a>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-[#001d3d] bg-transparent"
               >
-                Get Started
+                <a href="/courses">Get Started</a>
               </Button>
             </div>
 
-            
 
-            
+
+
           </motion.div>
 
           {/* Interactive, image-free panel */}
@@ -154,11 +156,11 @@ export default function HeroSection() {
               </div>
               <Tabs defaultValue="dev" className="w-full">
                 <TabsList className="bg-white/10">
-                  <TabsTrigger value="dev" className="data-[state=active]:bg-white/20">
-                    <Code2 className="w-4 h-4 mr-2" /> Dev
-                  </TabsTrigger>
                   <TabsTrigger value="data" className="data-[state=active]:bg-white/20">
                     <Brain className="w-4 h-4 mr-2" /> Data & AI
+                  </TabsTrigger>
+                  <TabsTrigger value="dev" className="data-[state=active]:bg-white/20">
+                    <Code2 className="w-4 h-4 mr-2" /> Dev
                   </TabsTrigger>
                   <TabsTrigger value="biz" className="data-[state=active]:bg-white/20">
                     <Briefcase className="w-4 h-4 mr-2" /> Business
@@ -208,7 +210,7 @@ export default function HeroSection() {
                 </TabsContent>
               </Tabs>
 
-             
+
             </InteractivePanel>
           </motion.div>
         </div>
@@ -230,7 +232,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      
+
     </section>
   )
 }

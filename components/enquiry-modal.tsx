@@ -11,9 +11,10 @@ import { useForm, ValidationError } from "@formspree/react"
 interface EnquiryModalProps {
   isOpen: boolean
   onClose: () => void
+  mode?: "general" | "career"
 }
 
-export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
+export default function EnquiryModal({ isOpen, onClose, mode = "general" }: EnquiryModalProps) {
   const [state, handleSubmit] = useForm("xdkdjdek")
   return (
     <AnimatePresence>
@@ -60,6 +61,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                   </div>
                 ) : (
                   <form className="space-y-4" onSubmit={handleSubmit}>
+                    {/* Identify where the form was opened from */}
+                    {mode === "career" && (
+                      <input type="hidden" name="form_source" value="career" />
+                    )}
                     <div>
                       <Input name="name" placeholder="Full Name" required className="border-gray-300" />
                       <ValidationError prefix="Name" field="name" errors={state.errors} />
@@ -88,10 +93,23 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       />
                       <ValidationError prefix="Phone" field="phone" errors={state.errors} />
                     </div>
-                    <div>
-                      <Input name="course" placeholder="Course of Interest" className="border-gray-300" />
-                      <ValidationError prefix="Course" field="course" errors={state.errors} />
-                    </div>
+                    {mode === "career" ? (
+                      <div>
+                        <Input
+                          name="resume_link"
+                          placeholder="Resume drive link (URL)"
+                          type="url"
+                          required
+                          className="border-gray-300"
+                        />
+                        <ValidationError prefix="Resume Link" field="resume_link" errors={state.errors} />
+                      </div>
+                    ) : (
+                      <div>
+                        <Input name="course" placeholder="Course of Interest" className="border-gray-300" />
+                        <ValidationError prefix="Course" field="course" errors={state.errors} />
+                      </div>
+                    )}
                     <div>
                       <Textarea name="message" placeholder="Message (Optional)" rows={3} className="border-gray-300" />
                       <ValidationError prefix="Message" field="message" errors={state.errors} />

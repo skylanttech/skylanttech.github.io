@@ -11,7 +11,7 @@ export default function StatisticsSection() {
   const stats = [
     { number: 1000, suffix: "+", label: "Students Trained" },
     { number: 30, suffix: "+", label: "Clients" },
-    { number: 25, suffix: "+", label: "Projects Completed" },
+    { number: 25, suffix: "+", label: "Data Analysis" },
     { number: 100, suffix: "%", label: "Placement Support" },
   ]
 

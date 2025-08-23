@@ -3,16 +3,17 @@
 import { useState } from "react"
 import Header from "@/components/header"
 import HeroSection from "@/components/hero-section"
-import ServicesSection from "@/components/services-section"
-import AboutSection from "@/components/about-section"
+// import ServicesSection from "@/components/services-section"
+// import AboutSection from "@/components/about-section"
 import TrainingProgramsSection from "@/components/training-programs-section"
-import ProjectServicesSection from "@/components/project-services-section"
+// import ProjectServicesSection from "@/components/project-services-section"
 import StatisticsSection from "@/components/statistics-section"
 import PlacementCompaniesSection from "@/components/placement-companies-section"
 import TestimonialsSection from "@/components/testimonials-section"
-import ContactSection from "@/components/contact-section"
+// import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
 import EnquiryModal from "@/components/enquiry-modal"
+import StudentServicesSection from "@/components/student-services-section"
 
 export default function HomePage() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false)
@@ -23,6 +24,7 @@ export default function HomePage() {
 
       <main>
         <HeroSection />
+        <StudentServicesSection />
         {/* <ServicesSection /> */}
         {/* <AboutSection /> */}
         <TrainingProgramsSection />
@@ -30,7 +32,7 @@ export default function HomePage() {
         <StatisticsSection />
         <PlacementCompaniesSection />
         <TestimonialsSection />
-        <ContactSection />
+        {/* <ContactSection /> */}
       </main>
 
       <Footer />

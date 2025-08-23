@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Code, Layers, Target, MessageSquare, FileText, Palette, Camera, Megaphone } from "lucide-react"
+import { Code, Layers, Target, MessageSquare, FileText, Palette, Camera, Megaphone, BarChart3 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
@@ -38,6 +38,29 @@ export default function ServicesSection() {
         "Technology Training & Internship Programs – Upskill your workforce with the latest IT training.",
       ],
     },
+    {
+      icon: BarChart3,
+      title: "Data Analytics Services",
+      bullets: [
+        "Data Collection & Cleaning – Preparing accurate and reliable datasets",
+        "Data Visualization – Interactive dashboards & reports (Power BI, Tableau, Excel)",
+        "Business Intelligence (BI) – Transforming raw data into actionable insights",
+        "Predictive Analytics – Forecasting future trends with AI & ML models",
+        "Data-Driven Decision Support – Enabling smarter business strategies",
+      ],
+    },
+    {
+      icon: FileText,
+      title: "College Project Kit",
+      bullets: [
+        "Project Report – Complete documentation (synopsis, abstract, objectives, modules, conclusion), as per college/university format, editable in Word/PDF",
+        "Source Code – Fully functional project code (HTML, CSS, JS, PHP, Python, Django, etc.) with clear comments; includes DB files (MySQL/SQLite)",
+        "Project Demo – Step-by-step installation guide, screenshots & workflow explanation (video demo optional)",
+        "Presentation – Ready-to-use PPT with problem statement, solution, system design, screenshots, and results",
+        "Example Kits – Campus Placement Management System (PHP + MySQL), AI Chatbot for Healthcare (Python/NLP), E‑Commerce Website (Django/React + MySQL), Library Management System (Java + DBMS)",
+      ],
+    },
+    
     {
       icon: Target,
       title: "Digital Marketing",
