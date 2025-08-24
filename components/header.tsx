@@ -6,6 +6,8 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import Image from "next/image"
 
 interface HeaderProps {
   onEnquiryClick: () => void
@@ -34,11 +36,14 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-2"
           >
-            <div className="w-10 h-10">
-              <img
+            <div className="w-10 h-10 relative">
+              <Image
                 src="/logo/sklit_logo.jpeg"
                 alt="Skylant Tech Logo"
-                className="w-8 h-8  "
+                width={32}
+                height={32}
+                className="w-8 h-8"
+                priority
               />
             </div>
             <div>
@@ -49,17 +54,14 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.a
+            {navItems.map((item) => (
+              <Link
                 key={item.name}
                 href={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
                 className="text-gray-700 hover:text-[#0056d2] transition-colors duration-200 font-medium"
               >
                 {item.name}
-              </motion.a>
+              </Link>
             ))}
           </nav>
 
@@ -93,14 +95,14 @@ export default function Header({ onEnquiryClick, searchBar }: HeaderProps) {
             >
               <nav className="py-4 space-y-2">
                 {navItems.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className="block px-4 py-2 text-gray-700 hover:text-[#0056d2] hover:bg-gray-50 transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
                 <div className="px-4 pt-2">
                   <Button

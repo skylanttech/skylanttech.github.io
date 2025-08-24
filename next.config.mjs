@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const repo = "skylant" // GitHub repository name
+const repo = "Skylant" // GitHub repository name
 const isProd = process.env.NODE_ENV === "production"
 
 const nextConfig = {

@@ -43,7 +43,7 @@ export default function HeroSection() {
   useEffect(() => {
     const id = setInterval(() => setWordIndex((i) => (i + 1) % actionWords.length), 2200)
     return () => clearInterval(id)
-  }, [])
+  }, [actionWords.length])
 
   const skills = [
     "React", "TypeScript", "Next.js", "Node.js", "SQL", "Python",

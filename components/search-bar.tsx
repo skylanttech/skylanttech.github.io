@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useMemo } from "react"
+import type React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, X, Filter, Clock, Star, MapPin } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -21,11 +22,13 @@ interface SearchResult {
   image?: string
 }
 
+type FiltersState = { duration: string; level: string; mode: string; priceRange: string }
+
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult[]>([])
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<FiltersState>({
     duration: "",
     level: "",
     mode: "",
@@ -34,8 +37,8 @@ export default function SearchBar() {
   const [showFilters, setShowFilters] = useState(false)
   const searchRef = useRef<HTMLDivElement>(null)
 
-  // Mock search data
-  const searchData: SearchResult[] = [
+  // Mock search data (memoized to satisfy hooks deps)
+  const searchData: SearchResult[] = useMemo(() => [
     {
       id: "1",
       title: "Full Stack Development",
@@ -89,7 +92,7 @@ export default function SearchBar() {
       description: "Practice interviews with industry professionals",
       category: "Placement Support",
     },
-  ]
+  ], [])
 
   useEffect(() => {
     if (query.length > 0) {
@@ -114,7 +117,7 @@ export default function SearchBar() {
     } else {
       setResults([])
     }
-  }, [query, filters])
+  }, [query, filters, searchData])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -158,7 +161,7 @@ export default function SearchBar() {
         <Input
           placeholder="Search courses, blogs, services..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
           onFocus={() => setIsOpen(true)}
           className="pl-10 pr-20 h-12 text-lg border-2 border-gray-200 focus:border-[#0056d2] rounded-full"
         />
@@ -203,7 +206,9 @@ export default function SearchBar() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <select
                     value={filters.duration}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, duration: e.target.value }))}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setFilters((prev: FiltersState) => ({ ...prev, duration: e.target.value }))
+                    }
                     className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
                   >
                     <option value="">Duration</option>
@@ -213,7 +218,9 @@ export default function SearchBar() {
                   </select>
                   <select
                     value={filters.level}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, level: e.target.value }))}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setFilters((prev: FiltersState) => ({ ...prev, level: e.target.value }))
+                    }
                     className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
                   >
                     <option value="">Level</option>
@@ -223,7 +230,9 @@ export default function SearchBar() {
                   </select>
                   <select
                     value={filters.mode}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, mode: e.target.value }))}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setFilters((prev: FiltersState) => ({ ...prev, mode: e.target.value }))
+                    }
                     className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
                   >
                     <option value="">Mode</option>
@@ -233,7 +242,9 @@ export default function SearchBar() {
                   </select>
                   <select
                     value={filters.priceRange}
-                    onChange={(e) => setFilters((prev) => ({ ...prev, priceRange: e.target.value }))}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      setFilters((prev: FiltersState) => ({ ...prev, priceRange: e.target.value }))
+                    }
                     className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
                   >
                     <option value="">Price Range</option>
@@ -249,7 +260,7 @@ export default function SearchBar() {
             <div className="max-h-80 overflow-y-auto">
               {results.length > 0 ? (
                 <div className="p-2">
-                  {results.map((result) => (
+                  {results.map((result: SearchResult) => (
                     <motion.div
                       key={result.id}
                       initial={{ opacity: 0 }}
