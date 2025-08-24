@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
-const repo = "Skylant" // GitHub repository name
-const isProd = process.env.NODE_ENV === "production"
-
 const nextConfig = {
-  // Export static files for GitHub Pages
+  // Static export for GitHub Pages
   output: "export",
 
-  // Ensure paths work under https://<user>.github.io/<repo>
-  basePath: isProd ? `/${repo}` : undefined,
-  assetPrefix: isProd ? `/${repo}/` : undefined,
+  // User/Org Pages at https://<user>.github.io live at the domain root,
+  // so no basePath/assetPrefix are needed.
+  // If you later switch to a project page, set basePath/assetPrefix accordingly.
   trailingSlash: true, // Better compatibility with static hosting
 
   // next/image is not supported on static hosts by default
