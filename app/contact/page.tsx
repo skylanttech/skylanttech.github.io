@@ -64,7 +64,7 @@ export default function ContactPage() {
               <h2 className="text-2xl font-bold text-[#001d3d] mb-6">Send Us a Message</h2>
               {state.succeeded ? (
                 <div className="space-y-4">
-                  <p className="text-[#001d3d] font-semibold">Thanks! Well get back to you shortly.</p>
+                  <p className="text-[#001d3d] font-semibold">Thanks! We will get back to you shortly.</p>
                 </div>
               ) : (
               <form className="space-y-6 w-full" onSubmit={handleSubmit}>

@@ -39,6 +39,9 @@ jobs:
           NODE_ENV: production
         run: yarn build
 
+      - name: Add .nojekyll
+        run: echo > out/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
