@@ -39,20 +39,6 @@ jobs:
           NODE_ENV: production
         run: yarn build
 
-      - name: Move site under basePath directory
-        shell: bash
-        run: |
-          set -e
-          mkdir -p out/Skylant
-          shopt -s dotglob
-          for item in out/*; do
-            name=$(basename "$item")
-            if [ "$name" != "Skylant" ]; then
-              mv "$item" out/Skylant/
-            fi
-          done
-          touch out/Skylant/.nojekyll
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
