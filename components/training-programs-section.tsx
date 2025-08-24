@@ -17,7 +17,7 @@ import Autoplay from "embla-carousel-autoplay"
 export default function TrainingProgramsSection() {
   const autoplay = React.useRef(
     Autoplay({
-      delay: 3000,
+      delay: 2000,
       stopOnInteraction: false,
       stopOnMouseEnter: true,
       // Ensure hover/pause works on the whole carousel wrapper (not just viewport)

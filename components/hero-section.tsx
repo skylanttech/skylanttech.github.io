@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import type { ReactNode, CSSProperties } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Sparkles, CheckCircle2, Code2, Brain, Briefcase } from "lucide-react"
@@ -125,7 +126,7 @@ export default function HeroSection() {
                 size="lg"
                 className="bg-gradient-to-r from-[#ffc300] to-[#ff9500] hover:from-[#ff9500] hover:to-[#ffc300] text-black font-semibold"
               >
-                <a href="/services">Our Services</a>
+                <Link href="/services">Our Services</Link>
               </Button>
               <Button
                 asChild
@@ -133,7 +134,7 @@ export default function HeroSection() {
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-[#001d3d] bg-transparent"
               >
-                <a href="/courses">Get Started</a>
+                <Link href="/courses">Get Started</Link>
               </Button>
             </div>
 
